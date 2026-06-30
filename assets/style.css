@@ -131,6 +131,24 @@ button {
 }
 .toc + .note { margin-top: 0; }
 a { color: #7b4f16; font-weight: 700; text-decoration-thickness: .08em; }
+.quick-links {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: 10px;
+}
+.quick-links a {
+  display: block;
+  padding: 12px 14px;
+  border: 1px solid #d7c8b2;
+  border-radius: 6px;
+  background: #fff7ea;
+  color: #4f3210;
+  text-decoration: none;
+}
+.quick-links a::after {
+  content: "  →";
+}
 blockquote {
   margin: 16px 0;
   padding: 8px 16px;
