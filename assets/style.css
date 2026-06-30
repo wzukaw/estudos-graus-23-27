@@ -70,7 +70,7 @@ button {
   top: 0;
   z-index: 5;
   display: grid;
-  grid-template-columns: 1fr minmax(220px, 320px);
+  grid-template-columns: auto 1fr minmax(220px, 320px);
   gap: 16px;
   align-items: center;
   padding: 14px 0;
@@ -78,6 +78,19 @@ button {
   border-bottom: 1px solid #d7cec0;
 }
 .topbar h1 { margin: 0; font-size: 24px; }
+.menu-button {
+  width: 42px;
+  min-height: 42px;
+  margin-top: 0;
+  padding: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #8d5f26;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+}
 .toolbar {
   display: grid;
   grid-template-columns: auto minmax(220px, 320px);
@@ -94,6 +107,7 @@ button {
   border: 1px solid #d7c8b2;
 }
 .content { display: grid; grid-template-columns: minmax(220px, 280px) 1fr; gap: 24px; align-items: start; }
+.drawer-overlay { display: none; }
 .toc {
   position: sticky;
   top: 96px;
@@ -106,6 +120,7 @@ button {
 }
 .toc h2 { margin-top: 0; font-size: 18px; }
 .toc ol { padding-left: 22px; }
+.toc a.active { color: #1d1d1f; text-decoration: none; }
 .note {
   grid-column: 2;
   padding: 24px;
@@ -134,10 +149,50 @@ pre code {
 }
 .table-line { white-space: normal; }
 @media (max-width: 820px) {
-  .app { padding: 16px; }
-  .topbar { position: static; grid-template-columns: 1fr; }
+  body.menu-open { overflow: hidden; }
+  .app { padding: 0 14px 18px; }
+  .topbar {
+    position: sticky;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  .topbar .eyebrow { display: none; }
+  .topbar h1 { font-size: 18px; }
+  .menu-button { display: inline-flex; }
   .toolbar { grid-template-columns: 1fr; }
+  .toolbar .back-button { display: none; }
+  .toolbar input { min-height: 38px; }
   .content { display: block; }
-  .toc { position: static; max-height: none; margin-bottom: 16px; }
-  .note { grid-column: auto; padding: 18px; }
+  .drawer-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: rgba(0,0,0,.36);
+  }
+  body.menu-open .drawer-overlay { display: block; }
+  .toc {
+    position: fixed;
+    z-index: 25;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(86vw, 340px);
+    max-height: none;
+    margin: 0;
+    overflow: auto;
+    border-radius: 0;
+    border-width: 0 1px 0 0;
+    transform: translateX(-105%);
+    transition: transform .18s ease;
+  }
+  body.menu-open .toc { transform: translateX(0); }
+  .note {
+    grid-column: auto;
+    padding: 16px;
+    margin: 12px 0 0;
+    border-radius: 6px;
+  }
+  .note h1 { font-size: 24px; }
+  .note h2 { font-size: 20px; }
 }
