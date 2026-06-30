@@ -17,11 +17,19 @@ body {
   color: #f8f1e7;
 }
 .gate-panel {
-  width: min(440px, 100%);
+  width: min(720px, 100%);
   padding: 28px;
   border: 1px solid rgba(255,255,255,.18);
   background: rgba(255,255,255,.06);
   border-radius: 8px;
+}
+.gate-logo {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  margin: 0 0 22px;
+  border-radius: 6px;
 }
 .eyebrow {
   margin: 0 0 6px;
